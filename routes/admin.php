@@ -40,5 +40,17 @@ Route::group(['prefix'  =>  'admin'], function () {
             Route::post('/update-values', 'Admin\AttributeValueController@updateValues');
             Route::post('/delete-values', 'Admin\AttributeValueController@deleteValues');
         });
+
+        Route::group(['prefix'  =>   'brands'], function() {
+
+            Route::get('/', 'Admin\BrandController@index')->name('admin.brands.index');
+            Route::get('/create', 'Admin\BrandController@create')->name('admin.brands.create');
+            Route::post('/store', 'Admin\BrandController@store')->name('admin.brands.store');
+            Route::get('/{id}/edit', 'Admin\BrandController@edit')->name('admin.brands.edit');
+            Route::post('/update', 'Admin\BrandController@update')->name('admin.brands.update');
+            Route::get('/{id}/delete', 'Admin\BrandController@delete')->name('admin.brands.delete');
+
+        });
+
     });
 });
