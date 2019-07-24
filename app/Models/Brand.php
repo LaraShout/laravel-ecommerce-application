@@ -5,10 +5,6 @@ namespace App\Models;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
-/**
- * Class Brand
- * @package App\Models
- */
 class Brand extends Model
 {
     /**
@@ -28,5 +24,13 @@ class Brand extends Model
     {
         $this->attributes['name'] = $value;
         $this->attributes['slug'] = Str::slug($value);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products()
+    {
+        return $this->hasMany(Product::class);
     }
 }
