@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -28,6 +29,15 @@ class Product extends Model
         'status'    =>  'boolean',
         'featured'  =>  'boolean'
     ];
+
+    /**
+     * @param $value
+     */
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+        $this->attributes['slug'] = Str::slug($value);
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
