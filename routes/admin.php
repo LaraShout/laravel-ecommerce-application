@@ -60,6 +60,9 @@ Route::group(['prefix'  =>  'admin'], function () {
            Route::get('/edit/{id}', 'Admin\ProductController@edit')->name('admin.products.edit');
            Route::post('/update', 'Admin\ProductController@update')->name('admin.products.update');
 
+           Route::post('images/upload', 'Admin\ProductImageController@upload')->name('admin.products.images.upload');
+           Route::get('images/{id}/delete', 'Admin\ProductImageController@delete')->name('admin.products.images.delete');
+
         });
     });
 });
