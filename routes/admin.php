@@ -63,6 +63,12 @@ Route::group(['prefix'  =>  'admin'], function () {
            Route::post('images/upload', 'Admin\ProductImageController@upload')->name('admin.products.images.upload');
            Route::get('images/{id}/delete', 'Admin\ProductImageController@delete')->name('admin.products.images.delete');
 
+           Route::get('attributes/load', 'Admin\ProductAttributeController@loadAttributes');
+           Route::post('attributes', 'Admin\ProductAttributeController@productAttributes');
+           Route::post('attributes/values', 'Admin\ProductAttributeController@loadValues');
+           Route::post('attributes/add', 'Admin\ProductAttributeController@addAttribute');
+           Route::post('attributes/delete', 'Admin\ProductAttributeController@deleteAttribute');
+
         });
     });
 });

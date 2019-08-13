@@ -48,7 +48,7 @@ Vue.use(VueSwal);
 
 //Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('attribute-values', require('./components/AttributeValues.vue').default);
-
+Vue.component('product-attributes', require('./components/ProductAttributes').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
