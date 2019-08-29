@@ -3,11 +3,14 @@
 namespace App\Models;
 
 use App\Models\Product;
+use TypiCMS\NestableTrait;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    use NestableTrait;
+
     /**
      * @var string
      */

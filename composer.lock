@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4731429c7f25ab92eaa813447a972209",
+    "content-hash": "79927d9a0825289dac43351aacbdc51b",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2832,6 +2832,52 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2017-11-27T11:13:29+00:00"
+        },
+        {
+            "name": "typicms/nestablecollection",
+            "version": "v1.1.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TypiCMS/NestableCollection.git",
+                "reference": "9fa6d0fc82b9e0317051ba5e0d58b29bd3b51402"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TypiCMS/NestableCollection/zipball/9fa6d0fc82b9e0317051ba5e0d58b29bd3b51402",
+                "reference": "9fa6d0fc82b9e0317051ba5e0d58b29bd3b51402",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "~4.2|~5.0",
+                "illuminate/support": "~4.2|~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "TypiCMS\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Samuel De Backer",
+                    "email": "sdebacker@gmail.com"
+                }
+            ],
+            "description": "A Laravel Package that extends Collection to handle unlimited nested items following adjacency list model.",
+            "keywords": [
+                "TypiCMS",
+                "adjacency list",
+                "collection",
+                "eloquent",
+                "laravel",
+                "nested set",
+                "tree"
+            ],
+            "time": "2019-02-01T16:59:31+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
