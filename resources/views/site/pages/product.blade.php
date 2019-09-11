@@ -9,6 +9,13 @@
     <section class="section-content bg padding-y border-top" id="site">
         <div class="container">
             <div class="row">
+                <div class="col-sm-12">
+                    @if (Session::has('message'))
+                        <p class="alert alert-success">{{ Session::get('message') }}</p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="row no-gutters">

@@ -22,7 +22,7 @@
                                 <h4 class="title"><a href="{{ route('product.show', $product->slug) }}">{{ $product->name }}</a></h4>
                             </figcaption>
                             <div class="bottom-wrap">
-                                <a href="" class="btn btn-sm btn-success float-right"><i class="fa fa-cart-arrow-down"></i> Buy Now</a>
+                                <a href="{{ route('product.show', $product->slug) }}" class="btn btn-sm btn-success float-right">View Details</a>
                                 @if ($product->sale_price != 0)
                                     <div class="price-wrap h5">
                                         <span class="price"> {{ config('settings.currency_symbol').$product->sale_price }} </span>
