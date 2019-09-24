@@ -58,4 +58,14 @@ class OrderRepository extends BaseRepository implements OrderContract
 
         return $order;
     }
+
+    public function listOrders(string $order = 'id', string $sort = 'desc', array $columns = ['*'])
+    {
+        return $this->all($columns, $order, $sort);
+    }
+
+    public function findOrderByNumber($orderNumber)
+    {
+        return Order::where('order_number', $orderNumber)->first();
+    }
 }
