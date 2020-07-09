@@ -17,7 +17,7 @@ class CreateProductAttributesTable extends Migration
             $table->increments('id');
             $table->integer('quantity');
             $table->decimal('price')->nullable();
-            $table->unsignedInteger('product_id');
+            $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });
