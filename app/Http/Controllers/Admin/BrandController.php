@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Contracts\BrandContract;
 use App\Http\Controllers\BaseController;
+use Illuminate\Http\Request;
 
 class BrandController extends BaseController
 {
@@ -15,6 +15,7 @@ class BrandController extends BaseController
 
     /**
      * CategoryController constructor.
+     *
      * @param BrandContract $brandRepository
      */
     public function __construct(BrandContract $brandRepository)
@@ -30,6 +31,7 @@ class BrandController extends BaseController
         $brands = $this->brandRepository->listBrands();
 
         $this->setPageTitle('Brands', 'List of all brands');
+
         return view('admin.brands.index', compact('brands'));
     }
 
@@ -39,19 +41,22 @@ class BrandController extends BaseController
     public function create()
     {
         $this->setPageTitle('Brands', 'Create Brand');
+
         return view('admin.brands.create');
     }
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'      =>  'required|max:191',
-            'image'     =>  'mimes:jpg,jpeg,png|max:1000'
+            'name'      => 'required|max:191',
+            'image'     => 'mimes:jpg,jpeg,png|max:1000',
         ]);
 
         $params = $request->except('_token');
@@ -61,11 +66,13 @@ class BrandController extends BaseController
         if (!$brand) {
             return $this->responseRedirectBack('Error occurred while creating brand.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.brands.index', 'Brand added successfully' ,'success',false, false);
+
+        return $this->responseRedirect('admin.brands.index', 'Brand added successfully', 'success', false, false);
     }
 
     /**
      * @param $id
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
@@ -73,19 +80,22 @@ class BrandController extends BaseController
         $brand = $this->brandRepository->findBrandById($id);
 
         $this->setPageTitle('Brands', 'Edit Brand : '.$brand->name);
+
         return view('admin.brands.edit', compact('brand'));
     }
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request)
     {
         $this->validate($request, [
-            'name'      =>  'required|max:191',
-            'image'     =>  'mimes:jpg,jpeg,png|max:1000'
+            'name'      => 'required|max:191',
+            'image'     => 'mimes:jpg,jpeg,png|max:1000',
         ]);
 
         $params = $request->except('_token');
@@ -95,11 +105,13 @@ class BrandController extends BaseController
         if (!$brand) {
             return $this->responseRedirectBack('Error occurred while updating brand.', 'error', true, true);
         }
-        return $this->responseRedirectBack('Brand updated successfully' ,'success',false, false);
+
+        return $this->responseRedirectBack('Brand updated successfully', 'success', false, false);
     }
 
     /**
      * @param $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function delete($id)
@@ -109,6 +121,7 @@ class BrandController extends BaseController
         if (!$brand) {
             return $this->responseRedirectBack('Error occurred while deleting brand.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.brands.index', 'Brand deleted successfully' ,'success',false, false);
+
+        return $this->responseRedirect('admin.brands.index', 'Brand deleted successfully', 'success', false, false);
     }
 }

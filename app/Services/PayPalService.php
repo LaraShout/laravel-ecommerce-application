@@ -2,19 +2,19 @@
 
 namespace App\Services;
 
-use PayPal\Api\Payer;
-use PayPal\Api\Item;
 use Mockery\Exception;
 use PayPal\Api\Amount;
-use PayPal\Api\Payment;
 use PayPal\Api\Details;
+use PayPal\Api\Item;
 use PayPal\Api\ItemList;
-use PayPal\Rest\ApiContext;
-use PayPal\Api\Transaction;
-use PayPal\Api\RedirectUrls;
+use PayPal\Api\Payer;
+use PayPal\Api\Payment;
 use PayPal\Api\PaymentExecution;
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\Transaction;
 use PayPal\Auth\OAuthTokenCredential;
 use PayPal\Exception\PayPalConnectionException;
+use PayPal\Rest\ApiContext;
 
 class PayPalService
 {
@@ -50,12 +50,11 @@ class PayPalService
 
         // Create a new instance of Payer class
         $payer = new Payer();
-        $payer->setPaymentMethod("paypal");
+        $payer->setPaymentMethod('paypal');
 
         // Adding items to the list
-        $items = array();
-        foreach ($order->items as $item)
-        {
+        $items = [];
+        foreach ($order->items as $item) {
             $orderItems[$item->id] = new Item();
             $orderItems[$item->id]->setName($item->product->name)
                 ->setCurrency(config('settings.currency_code'))
@@ -94,15 +93,13 @@ class PayPalService
 
         // Creating payment instance
         $payment = new Payment();
-        $payment->setIntent("sale")
+        $payment->setIntent('sale')
                 ->setPayer($payer)
                 ->setRedirectUrls($redirectUrls)
-                ->setTransactions(array($transaction));
+                ->setTransactions([$transaction]);
 
         try {
-
             $payment->create($this->payPal);
-
         } catch (PayPalConnectionException $exception) {
             echo $exception->getCode(); // Prints the Error Code
             echo $exception->getData(); // Prints the detailed error message
@@ -128,7 +125,7 @@ class PayPalService
             $result = $payment->execute($execute, $this->payPal);
         } catch (PayPalConnectionException $exception) {
             $data = json_decode($exception->getData());
-            $_SESSION['message'] = 'Error, '. $data->message;
+            $_SESSION['message'] = 'Error, '.$data->message;
             // implement your own logic here to show errors from paypal
             exit;
         }
@@ -146,7 +143,7 @@ class PayPalService
 
             return $transactionData;
         } else {
-            echo "<h3>".$result->state."</h3>";
+            echo '<h3>'.$result->state.'</h3>';
             var_dump($result);
             exit(1);
         }

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Traits\FlashMessages;
 
 /**
- * Class BaseController
- * @package App\Http\Controllers
+ * Class BaseController.
  */
 class BaseController extends Controller
 {
@@ -28,30 +26,33 @@ class BaseController extends Controller
     }
 
     /**
-     * @param int $errorCode
+     * @param int  $errorCode
      * @param null $message
+     *
      * @return \Illuminate\Http\Response
      */
     protected function showErrorPage($errorCode = 404, $message = null)
     {
         $data['message'] = $message;
+
         return response()->view('errors.'.$errorCode, $data, $errorCode);
     }
 
     /**
-     * @param bool $error
-     * @param int $responseCode
+     * @param bool  $error
+     * @param int   $responseCode
      * @param array $message
-     * @param null $data
+     * @param null  $data
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     protected function responseJson($error = true, $responseCode = 200, $message = [], $data = null)
     {
         return response()->json([
-            'error'         =>  $error,
+            'error'         => $error,
             'response_code' => $responseCode,
             'message'       => $message,
-            'data'          =>  $data
+            'data'          => $data,
         ]);
     }
 
@@ -59,8 +60,9 @@ class BaseController extends Controller
      * @param $route
      * @param $message
      * @param string $type
-     * @param bool $error
-     * @param bool $withOldInputWhenError
+     * @param bool   $error
+     * @param bool   $withOldInputWhenError
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     protected function responseRedirect($route, $message, $type = 'info', $error = false, $withOldInputWhenError = false)
@@ -78,8 +80,9 @@ class BaseController extends Controller
     /**
      * @param $message
      * @param string $type
-     * @param bool $error
-     * @param bool $withOldInputWhenError
+     * @param bool   $error
+     * @param bool   $withOldInputWhenError
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     protected function responseRedirectBack($message, $type = 'info', $error = false, $withOldInputWhenError = false)

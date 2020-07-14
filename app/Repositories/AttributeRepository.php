@@ -2,16 +2,17 @@
 
 namespace App\Repositories;
 
-use App\Models\Attribute;
 use App\Contracts\AttributeContract;
-use Illuminate\Database\QueryException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Models\Attribute;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 
 class AttributeRepository extends BaseRepository implements AttributeContract
 {
     /**
      * AttributeRepository constructor.
+     *
      * @param Attribute $model
      */
     public function __construct(Attribute $model)
@@ -23,7 +24,8 @@ class AttributeRepository extends BaseRepository implements AttributeContract
     /**
      * @param string $order
      * @param string $sort
-     * @param array $columns
+     * @param array  $columns
+     *
      * @return mixed
      */
     public function listAttributes(string $order = 'id', string $sort = 'desc', array $columns = ['*'])
@@ -33,23 +35,23 @@ class AttributeRepository extends BaseRepository implements AttributeContract
 
     /**
      * @param int $id
-     * @return mixed
+     *
      * @throws ModelNotFoundException
+     *
+     * @return mixed
      */
     public function findAttributeById(int $id)
     {
         try {
             return $this->findOneOrFail($id);
-
         } catch (ModelNotFoundException $e) {
-
             throw new ModelNotFoundException($e);
         }
-
     }
 
     /**
      * @param array $params
+     *
      * @return Category|mixed
      */
     public function createAttribute(array $params)
@@ -67,7 +69,6 @@ class AttributeRepository extends BaseRepository implements AttributeContract
             $attribute->save();
 
             return $attribute;
-
         } catch (QueryException $exception) {
             throw new InvalidArgumentException($exception->getMessage());
         }
@@ -75,6 +76,7 @@ class AttributeRepository extends BaseRepository implements AttributeContract
 
     /**
      * @param array $params
+     *
      * @return mixed
      */
     public function updateAttribute(array $params)
@@ -95,6 +97,7 @@ class AttributeRepository extends BaseRepository implements AttributeContract
 
     /**
      * @param $id
+     *
      * @return bool|mixed
      */
     public function deleteAttribute($id)

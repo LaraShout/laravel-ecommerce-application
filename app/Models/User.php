@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -16,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'address', 'city', 'country'
+        'first_name', 'last_name', 'email', 'password', 'address', 'city', 'country',
     ];
 
     /**
@@ -42,7 +41,7 @@ class User extends Authenticatable
      */
     public function getFullNameAttribute()
     {
-        return $this->first_name. ' '. $this->last_name;
+        return $this->first_name.' '.$this->last_name;
     }
 
     public function orders()

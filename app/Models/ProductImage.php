@@ -20,7 +20,7 @@ class ProductImage extends Model
      * @var array
      */
     protected $casts = [
-        'product_id'    =>  'integer',
+        'product_id'    => 'integer',
     ];
 
     /**
