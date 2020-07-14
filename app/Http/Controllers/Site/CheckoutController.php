@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Site;
 
-use Cart;
-use App\Models\Order;
-use Illuminate\Http\Request;
-use App\Services\PayPalService;
 use App\Contracts\OrderContract;
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Services\PayPalService;
+use Cart;
+use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
@@ -37,7 +37,7 @@ class CheckoutController extends Controller
             $this->payPal->processPayment($order);
         }
 
-        return redirect()->back()->with('message','Order not placed');
+        return redirect()->back()->with('message', 'Order not placed');
     }
 
     public function complete(Request $request)
@@ -54,6 +54,7 @@ class CheckoutController extends Controller
         $order->save();
 
         Cart::clear();
+
         return view('site.pages.success', compact('order'));
     }
 }

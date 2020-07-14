@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Site;
 
-use Cart;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Cart;
 
 class CartController extends Controller
 {
@@ -20,6 +19,7 @@ class CartController extends Controller
         if (Cart::isEmpty()) {
             return redirect('/');
         }
+
         return redirect()->back()->with('message', 'Item removed from cart successfully.');
     }
 

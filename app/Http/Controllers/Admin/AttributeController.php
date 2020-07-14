@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\BaseController;
 use App\Contracts\AttributeContract;
+use App\Http\Controllers\BaseController;
+use Illuminate\Http\Request;
 
 class AttributeController extends BaseController
 {
@@ -15,6 +15,7 @@ class AttributeController extends BaseController
 
     /**
      * AttributeController constructor.
+     *
      * @param AttributeContract $attributeRepository
      */
     public function __construct(AttributeContract $attributeRepository)
@@ -30,6 +31,7 @@ class AttributeController extends BaseController
         $attributes = $this->attributeRepository->listAttributes();
 
         $this->setPageTitle('Attributes', 'List of all attributes');
+
         return view('admin.attributes.index', compact('attributes'));
     }
 
@@ -39,20 +41,23 @@ class AttributeController extends BaseController
     public function create()
     {
         $this->setPageTitle('Attributes', 'Create Attribute');
+
         return view('admin.attributes.create');
     }
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'code'          =>  'required',
-            'name'          =>  'required',
-            'frontend_type' =>  'required'
+            'code'          => 'required',
+            'name'          => 'required',
+            'frontend_type' => 'required',
         ]);
 
         $params = $request->except('_token');
@@ -62,11 +67,13 @@ class AttributeController extends BaseController
         if (!$attribute) {
             return $this->responseRedirectBack('Error occurred while creating attribute.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.attributes.index', 'Attribute added successfully' ,'success',false, false);
+
+        return $this->responseRedirect('admin.attributes.index', 'Attribute added successfully', 'success', false, false);
     }
 
     /**
      * @param $id
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
@@ -74,20 +81,23 @@ class AttributeController extends BaseController
         $attribute = $this->attributeRepository->findAttributeById($id);
 
         $this->setPageTitle('Attributes', 'Edit Attribute : '.$attribute->name);
+
         return view('admin.attributes.edit', compact('attribute'));
     }
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request)
     {
         $this->validate($request, [
-            'code'          =>  'required',
-            'name'          =>  'required',
-            'frontend_type' =>  'required'
+            'code'          => 'required',
+            'name'          => 'required',
+            'frontend_type' => 'required',
         ]);
 
         $params = $request->except('_token');
@@ -97,11 +107,13 @@ class AttributeController extends BaseController
         if (!$attribute) {
             return $this->responseRedirectBack('Error occurred while updating attribute.', 'error', true, true);
         }
-        return $this->responseRedirectBack('Attribute updated successfully' ,'success',false, false);
+
+        return $this->responseRedirectBack('Attribute updated successfully', 'success', false, false);
     }
 
     /**
      * @param $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function delete($id)
@@ -111,6 +123,7 @@ class AttributeController extends BaseController
         if (!$attribute) {
             return $this->responseRedirectBack('Error occurred while deleting attribute.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.attributes.index', 'Attribute deleted successfully' ,'success',false, false);
+
+        return $this->responseRedirect('admin.attributes.index', 'Attribute deleted successfully', 'success', false, false);
     }
 }

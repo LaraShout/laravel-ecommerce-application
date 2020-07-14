@@ -3,8 +3,7 @@
 namespace App\Traits;
 
 /**
- * Trait FlashMessages
- * @package App\Traits
+ * Trait FlashMessages.
  */
 trait FlashMessages
 {
@@ -37,27 +36,26 @@ trait FlashMessages
         $model = 'infoMessages';
 
         switch ($type) {
-            case 'info': {
+            case 'info':
                 $model = 'infoMessages';
-            }
+
                 break;
-            case 'error': {
+            case 'error':
                 $model = 'errorMessages';
-            }
+
                 break;
-            case 'success': {
+            case 'success':
                 $model = 'successMessages';
-            }
+
                 break;
-            case 'warning': {
+            case 'warning':
                 $model = 'warningMessages';
-            }
+
                 break;
         }
 
         if (is_array($message)) {
-            foreach ($message as $key => $value)
-            {
+            foreach ($message as $key => $value) {
                 array_push($this->$model, $value);
             }
         } else {
@@ -71,15 +69,15 @@ trait FlashMessages
     protected function getFlashMessages()
     {
         return [
-            'error'     =>  $this->errorMessages,
-            'info'      =>  $this->infoMessages,
-            'success'   =>  $this->successMessages,
-            'warning'   =>  $this->warningMessages,
+            'error'     => $this->errorMessages,
+            'info'      => $this->infoMessages,
+            'success'   => $this->successMessages,
+            'warning'   => $this->warningMessages,
         ];
     }
 
     /**
-     * Flushing flash messages to Laravel's session
+     * Flushing flash messages to Laravel's session.
      */
     protected function showFlashMessages()
     {

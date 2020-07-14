@@ -5,10 +5,9 @@ namespace App\Repositories;
 use App\Contracts\BaseContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 /**
- * Class BaseRepository
- *
- * @package \App\Repositories
+ * Class BaseRepository.
  */
 class BaseRepository implements BaseContract
 {
@@ -19,6 +18,7 @@ class BaseRepository implements BaseContract
 
     /**
      * BaseRepository constructor.
+     *
      * @param Model $model
      */
     public function __construct(Model $model)
@@ -28,6 +28,7 @@ class BaseRepository implements BaseContract
 
     /**
      * @param array $attributes
+     *
      * @return mixed
      */
     public function create(array $attributes)
@@ -37,27 +38,30 @@ class BaseRepository implements BaseContract
 
     /**
      * @param array $attributes
-     * @param int $id
+     * @param int   $id
+     *
      * @return bool
      */
-    public function update(array $attributes, int $id) : bool
+    public function update(array $attributes, int $id): bool
     {
         return $this->find($id)->update($attributes);
     }
 
     /**
-     * @param array $columns
+     * @param array  $columns
      * @param string $orderBy
      * @param string $sortBy
+     *
      * @return mixed
      */
-    public function all($columns = array('*'), string $orderBy = 'id', string $sortBy = 'asc')
+    public function all($columns = ['*'], string $orderBy = 'id', string $sortBy = 'asc')
     {
         return $this->model->orderBy($orderBy, $sortBy)->get($columns);
     }
 
     /**
      * @param int $id
+     *
      * @return mixed
      */
     public function find(int $id)
@@ -67,8 +71,10 @@ class BaseRepository implements BaseContract
 
     /**
      * @param int $id
-     * @return mixed
+     *
      * @throws ModelNotFoundException
+     *
+     * @return mixed
      */
     public function findOneOrFail(int $id)
     {
@@ -77,6 +83,7 @@ class BaseRepository implements BaseContract
 
     /**
      * @param array $data
+     *
      * @return mixed
      */
     public function findBy(array $data)
@@ -86,6 +93,7 @@ class BaseRepository implements BaseContract
 
     /**
      * @param array $data
+     *
      * @return mixed
      */
     public function findOneBy(array $data)
@@ -95,8 +103,10 @@ class BaseRepository implements BaseContract
 
     /**
      * @param array $data
-     * @return mixed
+     *
      * @throws ModelNotFoundException
+     *
+     * @return mixed
      */
     public function findOneByOrFail(array $data)
     {
@@ -105,9 +115,10 @@ class BaseRepository implements BaseContract
 
     /**
      * @param int $id
+     *
      * @return bool
      */
-    public function delete(int $id) : bool
+    public function delete(int $id): bool
     {
         return $this->model->find($id)->delete();
     }

@@ -2,18 +2,16 @@
 
 namespace App\Repositories;
 
+use App\Contracts\BrandContract;
 use App\Models\Brand;
 use App\Traits\UploadAble;
-use Illuminate\Http\UploadedFile;
-use App\Contracts\BrandContract;
-use Illuminate\Database\QueryException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\UploadedFile;
 
 /**
- * Class CategoryRepository
- *
- * @package \App\Repositories
+ * Class CategoryRepository.
  */
 class BrandRepository extends BaseRepository implements BrandContract
 {
@@ -21,6 +19,7 @@ class BrandRepository extends BaseRepository implements BrandContract
 
     /**
      * CategoryRepository constructor.
+     *
      * @param Brand $model
      */
     public function __construct(Brand $model)
@@ -32,7 +31,8 @@ class BrandRepository extends BaseRepository implements BrandContract
     /**
      * @param string $order
      * @param string $sort
-     * @param array $columns
+     * @param array  $columns
+     *
      * @return mixed
      */
     public function listBrands(string $order = 'id', string $sort = 'desc', array $columns = ['*'])
@@ -42,23 +42,23 @@ class BrandRepository extends BaseRepository implements BrandContract
 
     /**
      * @param int $id
-     * @return mixed
+     *
      * @throws ModelNotFoundException
+     *
+     * @return mixed
      */
     public function findBrandById(int $id)
     {
         try {
             return $this->findOneOrFail($id);
-
         } catch (ModelNotFoundException $e) {
-
             throw new ModelNotFoundException($e);
         }
-
     }
 
     /**
      * @param array $params
+     *
      * @return Brand|mixed
      */
     public function createBrand(array $params)
@@ -79,7 +79,6 @@ class BrandRepository extends BaseRepository implements BrandContract
             $brand->save();
 
             return $brand;
-
         } catch (QueryException $exception) {
             throw new InvalidArgumentException($exception->getMessage());
         }
@@ -87,6 +86,7 @@ class BrandRepository extends BaseRepository implements BrandContract
 
     /**
      * @param array $params
+     *
      * @return mixed
      */
     public function updateBrand(array $params)
@@ -96,7 +96,6 @@ class BrandRepository extends BaseRepository implements BrandContract
         $collection = collect($params)->except('_token');
 
         if ($collection->has('logo') && ($params['logo'] instanceof  UploadedFile)) {
-
             if ($brand->logo != null) {
                 $this->deleteOne($brand->logo);
             }
@@ -113,6 +112,7 @@ class BrandRepository extends BaseRepository implements BrandContract
 
     /**
      * @param $id
+     *
      * @return bool|mixed
      */
     public function deleteBrand($id)

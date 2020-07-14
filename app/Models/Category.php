@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Product;
-use TypiCMS\NestableTrait;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+use TypiCMS\NestableTrait;
 
 class Category extends Model
 {
@@ -20,16 +19,16 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'description', 'parent_id', 'featured', 'menu', 'image'
+        'name', 'slug', 'description', 'parent_id', 'featured', 'menu', 'image',
     ];
 
     /**
      * @var array
      */
     protected $casts = [
-        'parent_id' =>  'integer',
-        'featured'  =>  'boolean',
-        'menu'      =>  'boolean'
+        'parent_id' => 'integer',
+        'featured'  => 'boolean',
+        'menu'      => 'boolean',
     ];
 
     /**
@@ -46,7 +45,7 @@ class Category extends Model
      */
     public function children()
     {
-        return $this->hasMany(Category::class, 'parent_id');
+        return $this->hasMany(self::class, 'parent_id');
     }
 
     /**
@@ -54,7 +53,7 @@ class Category extends Model
      */
     public function parent()
     {
-        return $this->belongsTo(Category::class, 'parent_id');
+        return $this->belongsTo(self::class, 'parent_id');
     }
 
     /**
