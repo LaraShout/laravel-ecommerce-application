@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Traits\UploadAble;
-use App\Models\ProductImage;
-use Illuminate\Http\Request;
 use App\Contracts\ProductContract;
 use App\Http\Controllers\Controller;
+use App\Models\ProductImage;
+use App\Traits\UploadAble;
+use Illuminate\Http\Request;
 
 class ProductImageController extends Controller
 {
@@ -24,11 +24,10 @@ class ProductImageController extends Controller
         $product = $this->productRepository->findProductById($request->product_id);
 
         if ($request->has('image')) {
-
             $image = $this->uploadOne($request->image, 'products');
 
             $productImage = new ProductImage([
-                'full'      =>  $image,
+                'full'      => $image,
             ]);
 
             $product->images()->save($productImage);

@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -24,10 +24,10 @@ class Product extends Model
      * @var array
      */
     protected $casts = [
-        'quantity'  =>  'integer',
-        'brand_id'  =>  'integer',
-        'status'    =>  'boolean',
-        'featured'  =>  'boolean'
+        'quantity'  => 'integer',
+        'brand_id'  => 'integer',
+        'status'    => 'boolean',
+        'featured'  => 'boolean',
     ];
 
     /**

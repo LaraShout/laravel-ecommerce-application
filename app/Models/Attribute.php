@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Attribute
- * @package App\Models
+ * Class Attribute.
  */
 class Attribute extends Model
 {
@@ -19,15 +18,15 @@ class Attribute extends Model
      * @var array
      */
     protected $fillable = [
-        'code', 'name', 'frontend_type', 'is_filterable', 'is_required'
+        'code', 'name', 'frontend_type', 'is_filterable', 'is_required',
     ];
 
     /**
      * @var array
      */
-    protected $casts  = [
-        'is_filterable' =>  'boolean',
-        'is_required'   =>  'boolean',
+    protected $casts = [
+        'is_filterable' => 'boolean',
+        'is_required'   => 'boolean',
     ];
 
     /**

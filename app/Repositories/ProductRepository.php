@@ -2,18 +2,15 @@
 
 namespace App\Repositories;
 
+use App\Contracts\ProductContract;
 use App\Models\Product;
 use App\Traits\UploadAble;
-use Illuminate\Http\UploadedFile;
-use App\Contracts\ProductContract;
-use Illuminate\Database\QueryException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 
 /**
- * Class ProductRepository
- *
- * @package \App\Repositories
+ * Class ProductRepository.
  */
 class ProductRepository extends BaseRepository implements ProductContract
 {
@@ -21,6 +18,7 @@ class ProductRepository extends BaseRepository implements ProductContract
 
     /**
      * ProductRepository constructor.
+     *
      * @param Product $model
      */
     public function __construct(Product $model)
@@ -32,7 +30,8 @@ class ProductRepository extends BaseRepository implements ProductContract
     /**
      * @param string $order
      * @param string $sort
-     * @param array $columns
+     * @param array  $columns
+     *
      * @return mixed
      */
     public function listProducts(string $order = 'id', string $sort = 'desc', array $columns = ['*'])
@@ -42,23 +41,23 @@ class ProductRepository extends BaseRepository implements ProductContract
 
     /**
      * @param int $id
-     * @return mixed
+     *
      * @throws ModelNotFoundException
+     *
+     * @return mixed
      */
     public function findProductById(int $id)
     {
         try {
             return $this->findOneOrFail($id);
-
         } catch (ModelNotFoundException $e) {
-
             throw new ModelNotFoundException($e);
         }
-
     }
 
     /**
      * @param array $params
+     *
      * @return Product|mixed
      */
     public function createProduct(array $params)
@@ -78,8 +77,8 @@ class ProductRepository extends BaseRepository implements ProductContract
             if ($collection->has('categories')) {
                 $product->categories()->sync($params['categories']);
             }
-            return $product;
 
+            return $product;
         } catch (QueryException $exception) {
             throw new InvalidArgumentException($exception->getMessage());
         }
@@ -87,6 +86,7 @@ class ProductRepository extends BaseRepository implements ProductContract
 
     /**
      * @param array $params
+     *
      * @return mixed
      */
     public function updateProduct(array $params)
@@ -111,6 +111,7 @@ class ProductRepository extends BaseRepository implements ProductContract
 
     /**
      * @param $id
+     *
      * @return bool|mixed
      */
     public function deleteProduct($id)
@@ -124,6 +125,7 @@ class ProductRepository extends BaseRepository implements ProductContract
 
     /**
      * @param $slug
+     *
      * @return mixed
      */
     public function findProductBySlug($slug)

@@ -15,14 +15,14 @@ class AttributeValue extends Model
      * @var array
      */
     protected $fillable = [
-        'attribute_id', 'value', 'price'
+        'attribute_id', 'value', 'price',
     ];
 
     /**
      * @var array
      */
     protected $casts = [
-        'attribute_id'  =>  'integer',
+        'attribute_id'  => 'integer',
     ];
 
     /**

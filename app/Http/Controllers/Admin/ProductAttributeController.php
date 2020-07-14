@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Product;
-use App\Models\Attribute;
-use Illuminate\Http\Request;
-use App\Models\ProductAttribute;
 use App\Http\Controllers\Controller;
+use App\Models\Attribute;
+use App\Models\Product;
+use App\Models\ProductAttribute;
+use Illuminate\Http\Request;
 
 class ProductAttributeController extends Controller
 {
@@ -22,6 +22,7 @@ class ProductAttributeController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function productAttributes(Request $request)
@@ -33,6 +34,7 @@ class ProductAttributeController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function loadValues(Request $request)
@@ -44,6 +46,7 @@ class ProductAttributeController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function addAttribute(Request $request)
@@ -59,6 +62,7 @@ class ProductAttributeController extends Controller
 
     /**
      * @param Request $request
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function deleteAttribute(Request $request)

@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Contracts\CategoryContract;
 use App\Http\Controllers\BaseController;
+use Illuminate\Http\Request;
 
 /**
- * Class CategoryController
- * @package App\Http\Controllers\Admin
+ * Class CategoryController.
  */
 class CategoryController extends BaseController
 {
@@ -19,6 +18,7 @@ class CategoryController extends BaseController
 
     /**
      * CategoryController constructor.
+     *
      * @param CategoryContract $categoryRepository
      */
     public function __construct(CategoryContract $categoryRepository)
@@ -34,6 +34,7 @@ class CategoryController extends BaseController
         $categories = $this->categoryRepository->listCategories();
 
         $this->setPageTitle('Categories', 'List of all categories');
+
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -45,20 +46,23 @@ class CategoryController extends BaseController
         $categories = $this->categoryRepository->treeList();
 
         $this->setPageTitle('Categories', 'Create Category');
+
         return view('admin.categories.create', compact('categories'));
     }
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'      =>  'required|max:191',
-            'parent_id' =>  'required|not_in:0',
-            'image'     =>  'mimes:jpg,jpeg,png|max:1000'
+            'name'      => 'required|max:191',
+            'parent_id' => 'required|not_in:0',
+            'image'     => 'mimes:jpg,jpeg,png|max:1000',
         ]);
 
         $params = $request->except('_token');
@@ -68,11 +72,13 @@ class CategoryController extends BaseController
         if (!$category) {
             return $this->responseRedirectBack('Error occurred while creating category.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.categories.index', 'Category added successfully' ,'success',false, false);
+
+        return $this->responseRedirect('admin.categories.index', 'Category added successfully', 'success', false, false);
     }
 
     /**
      * @param $id
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit($id)
@@ -81,20 +87,23 @@ class CategoryController extends BaseController
         $categories = $this->categoryRepository->treeList();
 
         $this->setPageTitle('Categories', 'Edit Category : '.$targetCategory->name);
+
         return view('admin.categories.edit', compact('categories', 'targetCategory'));
     }
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     *
      * @throws \Illuminate\Validation\ValidationException
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request)
     {
         $this->validate($request, [
-            'name'      =>  'required|max:191',
-            'parent_id' =>  'required|not_in:0',
-            'image'     =>  'mimes:jpg,jpeg,png|max:1000'
+            'name'      => 'required|max:191',
+            'parent_id' => 'required|not_in:0',
+            'image'     => 'mimes:jpg,jpeg,png|max:1000',
         ]);
 
         $params = $request->except('_token');
@@ -104,11 +113,13 @@ class CategoryController extends BaseController
         if (!$category) {
             return $this->responseRedirectBack('Error occurred while updating category.', 'error', true, true);
         }
-        return $this->responseRedirectBack('Category updated successfully' ,'success',false, false);
+
+        return $this->responseRedirectBack('Category updated successfully', 'success', false, false);
     }
 
     /**
      * @param $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function delete($id)
@@ -118,6 +129,7 @@ class CategoryController extends BaseController
         if (!$category) {
             return $this->responseRedirectBack('Error occurred while deleting category.', 'error', true, true);
         }
-        return $this->responseRedirect('admin.categories.index', 'Category deleted successfully' ,'success',false, false);
+
+        return $this->responseRedirect('admin.categories.index', 'Category deleted successfully', 'success', false, false);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use App\Models\AttributeValue;
-use App\Http\Controllers\Controller;
 use App\Contracts\AttributeContract;
+use App\Http\Controllers\Controller;
+use App\Models\AttributeValue;
+use Illuminate\Http\Request;
 
 class AttributeValueController extends Controller
 {

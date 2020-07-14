@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Contracts\OrderContract;
 use App\Http\Controllers\BaseController;
+
 class OrderController extends BaseController
 {
     protected $orderRepository;
@@ -17,6 +18,7 @@ class OrderController extends BaseController
     {
         $orders = $this->orderRepository->listOrders();
         $this->setPageTitle('Orders', 'List of all orders');
+
         return view('admin.orders.index', compact('orders'));
     }
 
@@ -25,6 +27,7 @@ class OrderController extends BaseController
         $order = $this->orderRepository->findOrderByNumber($orderNumber);
 
         $this->setPageTitle('Order Details', $orderNumber);
+
         return view('admin.orders.show', compact('order'));
     }
 }

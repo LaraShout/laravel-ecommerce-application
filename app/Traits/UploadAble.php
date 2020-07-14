@@ -6,16 +6,16 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
 /**
- * Trait UploadAble
- * @package App\Traits
+ * Trait UploadAble.
  */
 trait UploadAble
 {
     /**
      * @param UploadedFile $file
-     * @param null $folder
-     * @param string $disk
-     * @param null $filename
+     * @param null         $folder
+     * @param string       $disk
+     * @param null         $filename
+     *
      * @return false|string
      */
     public function uploadOne(UploadedFile $file, $folder = null, $disk = 'public', $filename = null)
@@ -24,13 +24,13 @@ trait UploadAble
 
         return $file->storeAs(
             $folder,
-            $name . "." . $file->getClientOriginalExtension(),
+            $name.'.'.$file->getClientOriginalExtension(),
             $disk
         );
     }
 
     /**
-     * @param null $path
+     * @param null   $path
      * @param string $disk
      */
     public function deleteOne($path = null, $disk = 'public')

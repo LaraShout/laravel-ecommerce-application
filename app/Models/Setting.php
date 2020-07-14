@@ -27,12 +27,14 @@ class Setting extends Model
         if (!$entry) {
             return;
         }
+
         return $entry->value;
     }
 
     /**
      * @param $key
      * @param null $value
+     *
      * @return bool
      */
     public static function set($key, $value = null)
@@ -45,6 +47,7 @@ class Setting extends Model
         if (Config::get($key) == $value) {
             return true;
         }
+
         return false;
     }
 }
