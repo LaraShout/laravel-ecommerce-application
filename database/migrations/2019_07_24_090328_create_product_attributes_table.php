@@ -14,10 +14,10 @@ class CreateProductAttributesTable extends Migration
     public function up()
     {
         Schema::create('product_attributes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->integer('quantity');
             $table->decimal('price')->nullable();
-            $table->unsignedInteger('product_id');
+            $table->bigInteger('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });
